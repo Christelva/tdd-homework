@@ -1,6 +1,8 @@
 class Codebreaker
   class Game
     attr_reader :output
+WRONG_FORMATTED_GUESS = "Try guessing a number with 4 digits"
+
 
     def initialize(output)
       @output = output
@@ -14,10 +16,22 @@ class Codebreaker
     end
 
     def guess(input)
-      # Make sure to replace next line with the actual implemented marking algorithm,
-      # using the @secret_number
+        unless input.length == 4
+          puts WRONG_FORMATTED_GUESS
 
-      output.puts "you typed '#{input}'"
+        end
+
+        if input.chars.map.with_index do |e, i|
+
+          case @secret_number.chars.index(e)
+            when nil then print''
+            when i then print '+'
+            else  print '-'
+          end
+        end.join
+
+  output.puts "\n You typed: #{input}"
     end
   end
+end
 end
